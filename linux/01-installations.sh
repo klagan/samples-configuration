@@ -27,4 +27,6 @@ sudo sysctl -w vm.vfs_cache_pressure=50
 # verify installations
 docker --version
 docker compose version
+nginx -v
+systemctl status nginx
 sudo systemctl list-units --type=service --state=running
