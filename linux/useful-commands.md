@@ -53,6 +53,10 @@ id -g
 
 # example
 sudo mount -t cifs //xxx.xxx.xx.xx/Public /mnt/homeserver -o uid=1001,gid=1001
+
+# change file/folder ownership
+# uid:gid
+sudo chown -R 1001:1001 /path/to/file/or/folder
 ```
 
 
