@@ -20,6 +20,9 @@ sudo systemctl list-units --type=service --state=running
 
 # vanila test
 for i in {1..10}; do curl localhost > /dev/null; done
+
+# download file via curl
+curl -LJO <http address>
 ```
 
 ## Network
