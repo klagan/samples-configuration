@@ -8,13 +8,13 @@ wget "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-c
 chmod +x "/etc/openvpn/update-resolv-conf"
 
 # assuming you have already downloaded your own ovpn file
-echo "RUN: sudo openvpn <config.ovpn>"
+echo "Configure OpenVPN: sudo openvpn <config.ovpn>"
 
 # install docker
 sudo curl -fsSL https://get.docker.com | sh
 
 # add self to docker group
-# sudo usermod -aG docker $USER
+echo Add user to docker: sudo usermod -aG docker $USER
 
 # set up swap space (if not already configured)
 sudo fallocate -l 4G /swapfile
