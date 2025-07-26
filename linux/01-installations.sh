@@ -1,7 +1,7 @@
 apt update
 apt -y full-upgrade
 apt autoremove
-apt install -y ufw openvpn openresolv vim lynx lynis rkhunter apt-listbugs needrestart fail2ban clamav clamav-daemon nginx docker.io samba-client netdiscover cifs-utils nfs-common
+apt install -y ufw openvpn openresolv vim lynx lynis rkhunter apt-listbugs needrestart fail2ban clamav clamav-daemon nginx docker.io samba-client netdiscover cifs-utils nfs-common ca-certificates curl gnupg lsb-release
 
 # proton specific configuration of AOVPN
 wget "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-conf.sh" -O "/etc/openvpn/update-resolv-conf"
