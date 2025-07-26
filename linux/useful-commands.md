@@ -45,6 +45,13 @@ smbclient -L //server_ip_or_hostname -N
 sudo mkdir /mnt/windowsshare
 sudo mount -t cifs //<WINDOWS_SERVER_IP_OR_HOSTNAME>/<SHARE_NAME> /mnt/windowsshare -o username=<your_username>,password=<your_password>,uid=<local_user_id>,gid=<local_group_id>
 
+# persist the mount after servee restart
+# edit fstab
+sudo vim /etc/fstab
+
+# add mount map line to end of file
+//xxx.xxx.xx.xx/share /path/to/mount cifs defaults,uid=1002,gid=1002,credentials=/path/.smbcredentials,nofail 0 0
+
 # find user id
 id -u
 
