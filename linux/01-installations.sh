@@ -1,7 +1,7 @@
 apt update
 apt -y full-upgrade
 apt autoremove
-apt install -y ufw openvpn openresolv vim lynx lynis rkhunter apt-listbugs needrestart fail2ban clamav clamav-daemon nginx docker.io samba-client netdiscover cifs-utils nfs-common ca-certificates curl gnupg lsb-release
+apt install -y ufw openvpn openresolv vim lynx lynis rkhunter apt-listbugs needrestart fail2ban clamav clamav-daemon nginx samba-client netdiscover cifs-utils nfs-common ca-certificates curl gnupg lsb-release
 
 # proton specific configuration of AOVPN
 wget "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-conf.sh" -O "/etc/openvpn/update-resolv-conf"
@@ -9,6 +9,9 @@ chmod +x "/etc/openvpn/update-resolv-conf"
 
 # assuming you have already downloaded your own ovpn file
 echo "RUN: sudo openvpn <config.ovpn>"
+
+# install docker
+sudo curl -fsSL https://get.docker.com | sh
 
 # add self to docker group
 # sudo usermod -aG docker $USER
@@ -25,8 +28,6 @@ sudo sysctl -w vm.swappiness=10
 sudo sysctl -w vm.vfs_cache_pressure=50
 
 # verify installations
-docker --version
-docker compose version
 nginx -v
 systemctl status nginx
 sudo systemctl list-units --type=service --state=running
