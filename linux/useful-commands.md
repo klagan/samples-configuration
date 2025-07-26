@@ -105,3 +105,24 @@ vim /etc/ssh/sshd_config
 - [x] PermitRootLogin no
 - [x] PasswordAuthentication no (if using SSH keys)
 - [ ] AllowUsers <your_username> (to explicitly allow only certain users)
+
+## WiFi
+
+```bash
+
+# list wifi access points
+nmcli device wifi list
+
+# turn wifi on/off
+nmcli radio wifi on
+nmcli radio wifi off
+
+# connect to wifi
+nmcli device wifi connect "your_SSID" password "your_Password"
+
+# verify connection
+nmcli connection show --active
+
+# gui
+nmtui
+```
