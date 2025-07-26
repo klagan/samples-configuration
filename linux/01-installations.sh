@@ -7,14 +7,8 @@ apt install -y ufw openvpn openresolv vim lynx lynis rkhunter apt-listbugs needr
 wget "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-conf.sh" -O "/etc/openvpn/update-resolv-conf"
 chmod +x "/etc/openvpn/update-resolv-conf"
 
-# assuming you have already downloaded your own ovpn file
-echo "Configure OpenVPN: sudo openvpn <config.ovpn>"
-
 # install docker
 sudo curl -fsSL https://get.docker.com | sh
-
-# add self to docker group
-echo Add user to docker: sudo usermod -aG docker $USER
 
 # set up swap space (if not already configured)
 sudo fallocate -l 4G /swapfile
@@ -33,3 +27,9 @@ docker compose version
 nginx -v
 systemctl status nginx
 sudo systemctl list-units --type=service --state=running
+
+# assuming you have already downloaded your own ovpn file
+echo "Configure OpenVPN: sudo openvpn <config.ovpn>"
+
+# add self to docker group
+echo Add user to docker: sudo usermod -aG docker $USER
