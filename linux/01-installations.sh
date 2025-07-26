@@ -28,6 +28,7 @@ sudo sysctl -w vm.swappiness=10
 sudo sysctl -w vm.vfs_cache_pressure=50
 
 # verify installations
+docker -v
 nginx -v
 systemctl status nginx
 sudo systemctl list-units --type=service --state=running
