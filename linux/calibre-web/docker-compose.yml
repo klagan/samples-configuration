@@ -9,7 +9,8 @@ services:
       - TZ=Europe/London
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
-      - <path to Config Folder>:/config
-      - <path to Calibre Database Folder>:/books
+      - <path to config folder>:/config             # calibre web configuration - self generated
+      - <path to calibre database folder>:/bookdb   # metadata.db location - requires it to already exist
+      - <path to book storage>:/books               # where to store all books - i choose network share to separate storage and compute
     ports:
       - 8083:8083
