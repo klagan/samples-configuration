@@ -4,13 +4,13 @@ services:
     image: ghcr.io/linuxserver/calibre-web
     container_name: calibre-web
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=$(id -u $USER)
+      - PGID=$(id -g $USER)
       - TZ=Europe/London
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
-      - /${OWNER_NAME}/config:/config   # calibre web configuration - self generated
-      - /${OWNER_NAME}/db:/db           # metadata.db location - requires it to already exist
-      - /${OWNER_NAME}/books:/books     # where to store all books - i choose network share to separate storage and compute
+      - /${USER}/config:/config   # calibre web configuration - self generated
+      - /${USER}/db:/db           # metadata.db location - requires it to already exist
+      - /${USER}/books:/books     # where to store all books - i choose network share to separate storage and compute
     ports:
       - 8083:8083
