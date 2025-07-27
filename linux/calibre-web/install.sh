@@ -1,10 +1,10 @@
 # set environment variables
-export CIFS_SERVER=192.168.0.0
-export CIFS_SHARE=Public/Books
-export MOUNT_POINT=/calibreweb/books
-export CREDENTIALS_FILE=/calibreweb/.credentials
-export OWNER_NAME=calibreweb
-export OWNER_GROUP_NAME=calibreweb
+export CIFS_SERVER=192.168.0.0                       # network server address to map to
+export CIFS_SHARE=Public/Books                       # network share name to map to
+export MOUNT_POINT=/calibreweb/books                 # chnage only if required
+export CREDENTIALS_FILE=/calibreweb/.credentials     # change only if required
+export OWNER_NAME=calibreweb                         # change only if required 
+export OWNER_GROUP_NAME=calibreweb                   # change only if required
 
 # create user
 useradd -m ${OWNER_NAME}
