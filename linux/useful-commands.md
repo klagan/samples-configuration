@@ -23,6 +23,9 @@ for i in {1..10}; do curl localhost > /dev/null; done
 
 # download file via curl
 curl -LJO <http address>
+
+# if using raspberry pi - find model
+cat /proc/device-tree/model
 ```
 
 ## Network
