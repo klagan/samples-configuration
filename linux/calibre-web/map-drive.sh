@@ -107,7 +107,7 @@ fi
 
 # 6. Attempt to mount the new entry to verify (without rebooting)
 echo "Attempting to mount the new entry: ${MOUNT_POINT}..."
-mount "${MOUNT_POINT}"
+mount "${MOUNT_POINT}" -o credentials=${CREDENTIALS_FILE}
 
 if [ $? -eq 0 ]; then
     echo "SUCCESS: Share mounted successfully from the new fstab entry."
