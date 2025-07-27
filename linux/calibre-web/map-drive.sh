@@ -19,14 +19,10 @@ CIFS_SERVER="$CIFS_SERVER"
 CIFS_SHARE="$CIFS_SHARE"
 MOUNT_POINT="$MOUNT_POINT"
 CREDENTIALS_FILE="$CREDENTIALS_FILE" # Path to your secure credentials file
-# echo "username=${CIFS_USERNAME}" | tee "${CREDENTIALS_FILE}" > /dev/null
-# echo "password=${CIFS_PASSWORD}" | tee -a "${CREDENTIALS_FILE}" > /dev/null # -a for append
+echo "username=${CIFS_USERNAME}" | tee "${CREDENTIALS_FILE}" > /dev/null
+echo "password=${CIFS_PASSWORD}" | tee -a "${CREDENTIALS_FILE}" > /dev/null # -a for append
 FS_TYPE="cifs"
-# OPTIONS="credentials=${CREDENTIALS_FILE},iocharset=utf8,vers=3.0,uid=$(id -u calibreweb),gid=$(id -g calibreweb),file_mode=0770,dir_mode=0770,nofail,x-systemd.automount"
-
-OPTIONS="uid=$(id -u $OWNER_NAME),gid=$(id -g $OWNER_GROUP_NAME),nofail"
-
-# chown $(id -u calibreweb):$(id -g calibreweb) ${CREDENTIALS_FILE}
+OPTIONS="defaults,credentials=${CREDENTIALS_FILE},uid=$(id -u $OWNER_NAME),gid=$(id -g $OWNER_GROUP_NAME),nofail"
 
 # NOTE: uid and gid should be the IDs of the local user/group that should own the mounted files.
 # Use 'id -u YOUR_USERNAME' and 'id -g YOUR_USERNAME' to find these.
