@@ -15,3 +15,7 @@ chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_NAME}) /${OWNER_NAME}
 
 # map drives
 ./map-drive.sh
+
+# download files
+cp metadata.db /${OWNER_NAME}/db
+cp docker-compose.yml /${OWNER_NAME}
