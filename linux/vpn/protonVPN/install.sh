@@ -1,3 +1,10 @@
+
+## EDIT VARIABLES HERE <----------------------------------------------------------------------
+export vpn_username=                              # your vpn username
+export vpn_password=                              # your vpn password
+export credentials_file=.vpn_credentials          # change only if you need a different name
+export ovpn_filename=/root/ch.protonvpn.udp.ovpn  # change this to your own openvpn file
+
 # install packages
 apt -y update && apt -y upgrade
 apt install -y openvpn openresolv
@@ -6,12 +13,6 @@ apt autoremove
 # proton specific configuration of AOVPN
 wget "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-conf.sh" -O "/etc/openvpn/update-resolv-conf"
 chmod +x "/etc/openvpn/update-resolv-conf"
-
-## EDIT VARIABLES HERE <----------------------------
-export vpn_username=
-export vpn_password=
-export credentials_file=.vpn_credentials
-export ovpn_filename=/root/ch.protonvpn.udp.ovpn
 
 echo "${vpn_username}" | tee "${credentials_file}" > /dev/null
 echo "${vpn_password}" | tee -a "${credentials_file}" > /dev/null
