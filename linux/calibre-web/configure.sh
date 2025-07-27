@@ -11,7 +11,6 @@ useradd -m ${OWNER_NAME}
 
 # create folders
 mkdir /${OWNER_NAME} /${OWNER_NAME}/books /${OWNER_NAME}/db /${OWNER_NAME}/config
-chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_NAME}) /${OWNER_NAME}
 
 # map drives
 ./map-drive.sh
@@ -19,3 +18,6 @@ chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_NAME}) /${OWNER_NAME}
 # download files
 cp metadata.db /${OWNER_NAME}/db
 cp docker-compose.yml /${OWNER_NAME}
+
+# reset permissions
+chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_NAME}) /${OWNER_NAME}
