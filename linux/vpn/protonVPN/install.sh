@@ -1,7 +1,7 @@
 # install packages
-apt update
+apt -y update
 apt -y full-upgrade
-apt install openvpn openresolv -y
+apt install -y openvpn openresolv
 apt autoremove
 
 # proton specific configuration of AOVPN
