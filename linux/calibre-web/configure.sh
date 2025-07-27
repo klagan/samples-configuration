@@ -21,3 +21,6 @@ cp docker-compose.yml /${OWNER_NAME}
 
 # reset permissions
 chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_NAME}) /${OWNER_NAME}
+
+# add user to docker
+sudo usermod -aG docker ${OWNER_NAME}
