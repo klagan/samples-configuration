@@ -7,12 +7,7 @@ apt autoremove
 wget "https://raw.githubusercontent.com/ProtonVPN/scripts/master/update-resolv-conf.sh" -O "/etc/openvpn/update-resolv-conf"
 chmod +x "/etc/openvpn/update-resolv-conf"
 
-# verify installations
-sudo systemctl list-units --type=service --state=running
-
-# assuming you have already downloaded your own ovpn file
-echo "Configure OpenVPN: sudo openvpn <config.ovpn>"
-
+## EDIT VARIABLES HERE <----------------------------
 export vpn_username=
 export vpn_password=
 export credentials_file=.vpn_credentials
@@ -27,11 +22,16 @@ chmod 600 /etc/openvpn/${credentials_file}
 # configure vpn
 cp ${ovpn_filename} /etc/openvpn/myvpn.conf
 
-echo -e "\e[33mEDIT THIS LINE IN /etc/openvpn/myvpn.conf : auth-user-pass /etc/openvpn/.vpn_credentials\e[0m"
-echo -e "\e[33mENABLE SERVICE: systemctl enable openvpn@myvpn.service\e[0m"
-echo -e "\e[33mSTART SERVICE: systemctl start openvpn@myvpn.service\e[0m"
-echo -e "\e[33mCHECK SERVICE: systemctl status openvpn@myvpn.service\e[0m"
-echo -e "\e[33mVALIDATE: curl ipinfo.io\e[0m"
+# include credentials file
+sed -i 's/^auth-user-pass$/auth-user-pass \/etc\/openvpn\/.vpn_credentials/' /etc/openvpn/myvpn.conf
+
+# start services
+systemctl enable openvpn@myvpn.service
+systemctl start openvpn@myvpn.service
+
+# validate  vpn active
+systemctl status openvpn@myvpn.service
+curl ipinfo.io
 
 # troubleshooting
 # journalctl -u openvpn@myvpn.service -f
