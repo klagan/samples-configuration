@@ -24,8 +24,5 @@ nginx -v
 systemctl status nginx
 sudo systemctl list-units --type=service --state=running
 
-# assuming you have already downloaded your own ovpn file
-echo "Configure OpenVPN: sudo openvpn <config.ovpn>"
-
 # add self to docker group
 echo Add user to docker: sudo usermod -aG docker $USER
