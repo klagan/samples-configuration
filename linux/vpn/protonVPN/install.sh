@@ -1,6 +1,5 @@
 # install packages
-apt -y update
-apt full-upgrade
+apt -y update && apt -y upgrade
 apt install -y openvpn openresolv
 apt autoremove
 
