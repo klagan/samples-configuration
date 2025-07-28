@@ -16,7 +16,6 @@ mkdir /${OWNER_NAME} /${OWNER_NAME}/books /${OWNER_NAME}/db /${OWNER_NAME}/confi
 ../tools/map-drive.sh
 
 # download files
-cp metadata.db /${OWNER_NAME}/db
 cp docker-compose.yml /${OWNER_NAME}
 
 # reset permissions
