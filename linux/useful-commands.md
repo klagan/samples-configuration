@@ -45,8 +45,8 @@ sudo netdiscover -r xxx.xxx.xx.xx/24
 smbclient -L //server_ip_or_hostname -N
 
 # mount windows share
-sudo mkdir /mnt/windowsshare
-sudo mount -t cifs //<WINDOWS_SERVER_IP_OR_HOSTNAME>/<SHARE_NAME> /mnt/windowsshare -o username=<your_username>,password=<your_password>,uid=<local_user_id>,gid=<local_group_id>
+mkdir /mnt/windowsshare
+mount -t cifs //<WINDOWS_SERVER_IP_OR_HOSTNAME>/<SHARE_NAME> /mnt/windowsshare -o username=<your_username>,password=<your_password>,uid=<local_user_id>,gid=<local_group_id>
 
 # find user id
 id -u
@@ -55,21 +55,21 @@ id -u
 id -g
 
 # example
-sudo mount -t cifs //xxx.xxx.xx.xx/Public /mnt/homeserver -o uid=1001,gid=1001
+mount -t cifs //xxx.xxx.xx.xx/Public /mnt/homeserver -o uid=1001,gid=1001
 
 # verify mount
 df -h "/mnt/server/folder"
 
 # persist the mount after servee restart
 # edit fstab
-sudo vim /etc/fstab
+vim /etc/fstab
 
 # add mount map line to end of file
 //xxx.xxx.xx.xx/share /path/to/mount cifs defaults,uid=1002,gid=1002,credentials=/path/.smbcredentials,nofail 0 0
 
 # change file/folder ownership
 # uid:gid
-sudo chown -R 1001:1001 /path/to/file/or/folder
+chown -R 1001:1001 /path/to/file/or/folder
 ```
 
 
@@ -77,12 +77,12 @@ sudo chown -R 1001:1001 /path/to/file/or/folder
 
 ```bash
 # audit system
-sudo lynis audit system
+lynis audit system
 ```
 
 ```bash
 # check for rootkits
-sudo rkhunter --check
+rkhunter --check
 ```
 
 ## Anti-virus with ClamAV
@@ -95,19 +95,19 @@ getent group clamav
 
 ```bash
 # update av definitions
-sudo systemctl stop clamav-freshclam
-sudo freshclam
-sudo systemctl enable --now clamav-freshclam
-sudo systemctl enable --now clamav-daemon
+systemctl stop clamav-freshclam
+freshclam
+systemctl enable --now clamav-freshclam
+systemctl enable --now clamav-daemon
 
 # verify av services back
-sudo systemctl status clamav-freshclam
-sudo systemctl status clamav-daemon
+systemctl status clamav-freshclam
+systemctl status clamav-daemon
 ```
 
 ```bash
 # full scan (long time)
-sudo clamscan -r /
+clamscan -r /
 
 # scan specific file/folder
 clamscan -r -i /path/to/scan 
@@ -151,21 +151,21 @@ nmtui
 
 ```bash
 # disable swapfile
-sudo swapoff /swapfile
+swapoff /swapfile
 
 #  make a backup of your fstab file first!
-sudo cp /etc/fstab /etc/fstab.bak
+cp /etc/fstab /etc/fstab.bak
 
 # remove the specific line using sed
-sudo sed -i '\%^/swapfile none swap sw 0 0$%d' /etc/fstab
+sed -i '\%^/swapfile none swap sw 0 0$%d' /etc/fstab
 
 # disable swapfile
-sudo rm /swapfile
+rm /swapfile
 
 # remove the following entries from /etc/sysctl.conf or from /etc/sysctl.d/
 # vm.swappiness=10
 # vm.vfs_cache_pressure=50
 
 # reboot
-sudo reboot
+reboot
 ```
