@@ -4,7 +4,7 @@ apt -y install ufw vim lynx lynis rkhunter apt-listbugs needrestart fail2ban cla
 apt autoremove
 
 # set up swap space (if not already configured)
-fallocate -l 4G /swapfile
+fallocate -l 1G /swapfile
 chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
