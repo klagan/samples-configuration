@@ -1,7 +1,7 @@
 apt update
-apt -y full-upgrade
+apt -y upgrade
+apt -y install ufw vim lynx lynis rkhunter apt-listbugs needrestart fail2ban clamav clamav-daemon samba-client netdiscover cifs-utils nfs-common ca-certificates curl
 apt autoremove
-apt install ufw vim lynx lynis rkhunter apt-listbugs needrestart fail2ban clamav clamav-daemon nginx samba-client netdiscover cifs-utils nfs-common ca-certificates curl gnupg lsb-release -y
 
 # set up swap space (if not already configured)
 sudo fallocate -l 4G /swapfile
@@ -16,4 +16,3 @@ sudo sysctl -w vm.vfs_cache_pressure=50
 
 # verify installations
 sudo systemctl list-units --type=service --state=running
-
