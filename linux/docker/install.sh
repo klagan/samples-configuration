@@ -10,4 +10,4 @@ docker version
 docker compose version
 
 # add self to docker group
-echo -e "Add self to docker:\e[1;32msudo usermod -aG docker $USER\e[0m"
+echo -e "\nAdd self to docker:\e[1;32msudo usermod -aG docker $USER\e[0m"
