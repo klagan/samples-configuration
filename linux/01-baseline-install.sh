@@ -4,15 +4,15 @@ apt -y install ufw vim lynx lynis rkhunter apt-listbugs needrestart fail2ban cla
 apt autoremove
 
 # set up swap space (if not already configured)
-sudo fallocate -l 4G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
+fallocate -l 4G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 # optimize system settings
-sudo sysctl -w vm.swappiness=10
-sudo sysctl -w vm.vfs_cache_pressure=50
+sysctl -w vm.swappiness=10
+sysctl -w vm.vfs_cache_pressure=50
 
 # verify installations
-sudo systemctl list-units --type=service --state=running
+systemctl list-units --type=service --state=running
