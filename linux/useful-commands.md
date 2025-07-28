@@ -87,6 +87,21 @@ rkhunter --check
 
 ## Anti-virus with ClamAV
 
+#### ClamAV optimisations
+
+```bash
+# edit clamav configuration file
+sudo nano /etc/clamav/clamd.conf
+
+# add or edit the entry below
+ConcurrentDatabaseReload no
+
+# restart clamav daemon
+sudo systemctl restart clamav-daemon
+```
+
+#### ClamAV management
+
 ```bash
 # verify clam user
 getent passwd clamav
