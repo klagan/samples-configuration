@@ -17,6 +17,7 @@ mkdir /${OWNER_NAME} /${OWNER_NAME}/pictures
 
 # download files
 cp docker-compose.yml /${OWNER_NAME}
+cp .env /${OWNER_NAME}
 
 # reset permissions
 chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_NAME}) /${OWNER_NAME}
