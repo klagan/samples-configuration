@@ -1,7 +1,7 @@
 # set environment variables
 export CIFS_SERVER=192.168.0.0                       # network server address to map to
 export CIFS_SHARE=Public/Books                       # network share name to map to
-export MOUNT_POINT=/calibreweb/books                 # chnage only if required
+export MOUNT_POINT=/calibreweb/books                 # change only if required
 export CREDENTIALS_FILE=/calibreweb/.credentials     # change only if required
 export OWNER_NAME=calibreweb                         # change only if required 
 export OWNER_GROUP_NAME=calibreweb                   # change only if required
