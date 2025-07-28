@@ -98,6 +98,9 @@ ConcurrentDatabaseReload no
 
 # restart clamav daemon
 sudo systemctl restart clamav-daemon
+
+# OPTIONAL: can stop service completely
+sudo systemctl stop clamav-daemon
 ```
 
 #### ClamAV management
