@@ -10,7 +10,7 @@ export OWNER_GROUP_NAME=immich                   # change only if required
 useradd -m ${OWNER_NAME}
 
 # create folders
-mkdir /${OWNER_NAME} /${OWNER_NAME}/books /${OWNER_NAME}/db /${OWNER_NAME}/config
+mkdir /${OWNER_NAME} /${OWNER_NAME}/pictures 
 
 # map drives
 ../tools/map-drive.sh
