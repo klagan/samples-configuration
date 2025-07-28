@@ -97,10 +97,10 @@ sudo nano /etc/clamav/clamd.conf
 ConcurrentDatabaseReload no
 
 # restart clamav daemon
-sudo systemctl restart clamav-daemon
+systemctl restart clamav-daemon
 
 # OPTIONAL: can stop service completely
-sudo systemctl stop clamav-daemon
+systemctl stop clamav-daemon
 ```
 
 #### ClamAV management
