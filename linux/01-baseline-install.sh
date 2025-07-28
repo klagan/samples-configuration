@@ -1,6 +1,6 @@
 apt update
 apt -y upgrade
-apt -y install ufw vim lynx lynis rkhunter apt-listbugs needrestart fail2ban clamav clamav-daemon samba-client netdiscover cifs-utils nfs-common ca-certificates curl
+apt -y install ufw vim lynx lynis rkhunter glances apt-listbugs needrestart fail2ban clamav clamav-daemon samba-client netdiscover cifs-utils nfs-common ca-certificates curl
 apt autoremove
 
 # set up swap space (if not already configured)
