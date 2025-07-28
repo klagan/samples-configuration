@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  sftpgo:
+    image: drakkan/sftpgo:latest # Always prefer a specific version, e.g., drakkan/sftpgo:2.6.6
+    container_name: sftpgo
+    restart: unless-stopped # Always restart unless explicitly stopped
+
+    # Define the user and group ID inside the container
+    # This should ideally match a user/group ID on your host system
+    # that owns the /opt/sftpgo/data and /opt/sftpgo/config directories.
+    # Default SFTPGo internal user is often 1000.
+    user: "1000:1000"
+
+    ports:
+      # SFTP port
+      - "2022:2022" # Host_Port:Container_Port (You can change 2022 to any unused port on your host)
+      # WebAdmin UI port
+      - "8080:8080" # Host_Port:Container_Port
+
+    volumes:
+      # Volume for SFTPGo's internal database and configuration files
+      - /opt/sftpgo/config:/var/lib/sftpgo # Maps host config to container config location
+      # Volume for SFTP user's actual files (the /srv/sftpgo path is SFTPGo's default data root)
+      - /opt/sftpgo/data:/srv/sftpgo # Maps host data to container data location
+
+    environment:
+      # General Configuration
+      - TZ=Europe/London # Set your timezone for correct logging and timestamps
+
+      # WebAdmin UI Configuration
+      - SFTPGO_HTTPD__BINDINGS__0__PORT=8080
+      - SFTPGO_HTTPD__BINDINGS__0__ADDRESS=0.0.0.0 # Listen on all interfaces
+      # If you want to enable HTTPS for WebAdmin, you'll need certs and more config.
+      # SFTPGO_HTTPD__BINDINGS__0__ENABLE_HTTPS=true
+      # SFTPGO_HTTPD__BINDINGS__0__TLS_CERT_FILE=/etc/sftpgo/sftpgo.crt
+      # SFTPGO_HTTPD__BINDINGS__0__TLS_KEY_FILE=/etc/sftpgo/sftpgo.key
+
+      # SFTPD Configuration
+      - SFTPGO_SFTPD__BINDINGS__0__PORT=2022 # The SFTP port inside the container
+
+      # Admin User Creation (ONLY for the first run! REMOVE or set to false afterwards)
+      # This creates a default admin user. Change password!
+      - SFTPGO_DATA_PROVIDER__CREATE_DEFAULT_ADMIN=true
+      - SFTPGO_DATA_PROVIDER__DEFAULT_ADMIN_USERNAME=sftpgo_admin
+      - SFTPGO_DATA_PROVIDER__DEFAULT_ADMIN_PASSWORD=change_this_password_immediately!
+
+      # Database Configuration (for internal SFTPGo data - SQLite is default)
+      # If you want to use PostgreSQL or MySQL, uncomment and configure these:
+      # - SFTPGO_DATA_PROVIDER__DRIVER=mysql
+      # - SFTPGO_DATA_PROVIDER__NAME=sftpgo
+      # - SFTPGO_DATA_PROVIDER__HOST=mysql_db_service_name
+      # - SFTPGO_DATA_PROVIDER__PORT=3306
+      # - SFTPGO_DATA_PROVIDER__USERNAME=sftpgo_user
+      # - SFTPGO_DATA_PROVIDER__PASSWORD=sftpgo_db_pass
+      # - SFTPGO_DATA_PROVIDER__DB_PATH=/var/lib/sftpgo/sftpgo.db # Default for SQLite
+
+      # WebDAVD and FTPD (optional, uncomment to enable)
+      # - SFTPGO_WEBDAVD__BINDINGS__0__PORT=10080
+      # - SFTPGO_FTPD__BINDINGS__0__PORT=2121
+      # - SFTPGO_FTPD__BINDINGS__0__FORCE_PASSIVE_IP=your_external_ip_or_domain # Required for FTP passive mode if behind NAT
+      # - SFTPGO_FTPD__BINDINGS__0__ACTIVE_PORT_RANGE=50000-50100 # Adjust for FTP active mode if required
