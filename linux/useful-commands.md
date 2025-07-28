@@ -26,6 +26,9 @@ curl -LJO <http address>
 
 # if using raspberry pi - find model
 cat /proc/device-tree/model
+
+# find size of package
+dpkg -s glances | grep 'Installed-Size:'
 ```
 
 ## Network
