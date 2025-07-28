@@ -146,3 +146,26 @@ nmcli connection show --active
 # gui
 nmtui
 ```
+
+## Remove the swapfile
+
+```bash
+# disable swapfile
+sudo swapoff /swapfile
+
+#  make a backup of your fstab file first!
+sudo cp /etc/fstab /etc/fstab.bak
+
+# remove the specific line using sed
+sudo sed -i '\%^/swapfile none swap sw 0 0$%d' /etc/fstab
+
+# disable swapfile
+sudo rm /swapfile
+
+# remove the following entries from /etc/sysctl.conf or from /etc/sysctl.d/
+# vm.swappiness=10
+# vm.vfs_cache_pressure=50
+
+# reboot
+sudo reboot
+```
