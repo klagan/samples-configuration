@@ -4,7 +4,7 @@
 
 ```bash
 # change hostname
-sudo hostnamectl set-hostname your-new-hostname
+hostnamectl set-hostname your-new-hostname
 
 # check users on system
 getent passwd
@@ -16,7 +16,7 @@ sudo su -
 sudo su - <username>
 
 # list running services
-sudo systemctl list-units --type=service --state=running
+systemctl list-units --type=service --state=running
 
 # vanila test
 for i in {1..10}; do curl localhost > /dev/null; done
