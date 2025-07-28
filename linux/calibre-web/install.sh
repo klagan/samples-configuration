@@ -13,7 +13,7 @@ useradd -m ${OWNER_NAME}
 mkdir /${OWNER_NAME} /${OWNER_NAME}/books /${OWNER_NAME}/db /${OWNER_NAME}/config
 
 # map drives
-./map-drive.sh
+../tools/map-drive.sh
 
 # download files
 cp metadata.db /${OWNER_NAME}/db
