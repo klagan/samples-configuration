@@ -1,0 +1,31 @@
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n 
+    environment:
+      # - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME} # Or your actual host
+      - N8N_PORT=5678
+      - N8N_SECURE_COOKIE="false"
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      # - N8N_PROTOCOL=https # Or http
+      - NODE_ENV=production
+      # --- ADD THESE TWO LINES TO SET/RESET ADMIN USER ---
+      # - N8N_BASIC_AUTH_USER=something     # Choose a temporary username
+      # - N8N_BASIC_AUTH_PASSWORD=something # Choose a strong, temporary password
+      # --- END OF ADDED LINES ---
+      # You might have other N8N_* variables here
+      # - N8N_GENERIC_HOST=your.n8n.domain.com # Alternative for host config
+      # - N8N_SMTP_HOST=... # etc.
+    # networks: # If you use networks
+    #   - n8n_network
+
+volumes: # If you use volumes
+   n8n_data:
+
+# networks: # If you use networks
+#   n8n_network:
