@@ -87,6 +87,8 @@ mount -a
 # check mapping successful
 df -h
 
+# troubleshoot logs
+dmesg -T | grep -i "cifs\|smb\|mount\|network" # Kernel messages
 ```
 
 
