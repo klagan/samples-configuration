@@ -24,6 +24,24 @@ services:
       - .env
     ports:
       - '2283:2283'
+    deploy:
+      resources:
+        limits:
+          # CPU Limits
+          cpus: '3'   # Limit to 0.5 of a CPU core (e.g., half a core)
+                        # Can be '1' for one core, '0.25' for a quarter, etc.
+
+          # Memory Limits
+          memory: 3G  # Hard limit of 512 Megabytes (M, G, K are supported)
+
+        reservations:
+          # CPU Reservations (Soft Limit)
+          # Guarantees this amount of CPU *if available*. Useful for critical services.
+          cpus: '2'  # Reserve 0.25 of a CPU core
+
+          # Memory Reservations (Soft Limit)
+          # Guarantees this amount of memory *if available*. Container will try not to go below this.
+          memory: 2G  # Reserve 256 Megabytes
     depends_on:
       - redis
       - database
