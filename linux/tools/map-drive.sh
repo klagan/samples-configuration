@@ -22,7 +22,7 @@ CREDENTIALS_FILE="$CREDENTIALS_FILE" # Path to your secure credentials file
 echo "username=${CIFS_USERNAME}" | tee "${CREDENTIALS_FILE}" > /dev/null
 echo "password=${CIFS_PASSWORD}" | tee -a "${CREDENTIALS_FILE}" > /dev/null # -a for append
 FS_TYPE="cifs"
-OPTIONS="defaults,credentials=${CREDENTIALS_FILE},uid=$(id -u $OWNER_NAME),gid=$(id -g $OWNER_GROUP_NAME),nofail"
+OPTIONS="defaults,credentials=${CREDENTIALS_FILE},uid=$(id -u $OWNER_NAME),gid=$(id -g $OWNER_GROUP_NAME),nofail,soft,_netdev,file_mode=0770,dir_mode=0770,iocharset=utf8,x-systemd.automount"
 
 # NOTE: uid and gid should be the IDs of the local user/group that should own the mounted files.
 # Use 'id -u YOUR_USERNAME' and 'id -g YOUR_USERNAME' to find these.
