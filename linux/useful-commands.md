@@ -73,6 +73,20 @@ vim /etc/fstab
 # change file/folder ownership
 # uid:gid
 chown -R 1001:1001 /path/to/file/or/folder
+
+# reload mount
+# unmount current mapping
+umount <path>
+
+# reload fstab settings 
+systemctl daemon-reload
+
+# remount fstab
+mount -a
+
+# check mapping successful
+df -h
+
 ```
 
 
