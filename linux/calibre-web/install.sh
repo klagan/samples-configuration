@@ -20,4 +20,4 @@ cp metadata.db /opt/calibreweb/db
 cp docker-compose.yml /opt/calibreweb
 
 # reset permissions
-chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_NAME}) /opt/calibreweb
+chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_GROUP_NAME}) /opt/calibreweb
