@@ -4,8 +4,8 @@ services:
     image: ghcr.io/linuxserver/calibre-web
     container_name: calibre-web
     environment:
-      - PUID=$(id -u $USER)
-      - PGID=$(id -g $USER)
+      - PUID=$(id -u calibreweb)
+      - PGID=$(id -g calibreweb)
       - TZ=Europe/London
       - DOCKER_MODS=linuxserver/calibre-web:calibre
     volumes:
