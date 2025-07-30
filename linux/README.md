@@ -1,6 +1,8 @@
-# Useful commands
+# Getting started
 
-## Host
+## Useful commands
+
+### Host
 
 ```bash
 # change hostname
@@ -31,7 +33,7 @@ cat /proc/device-tree/model
 dpkg -s glances | grep 'Installed-Size:'
 ```
 
-## Network
+### Network
 
 ```bash
 # list network nodes
@@ -41,7 +43,7 @@ arp -a
 sudo netdiscover -r xxx.xxx.xx.xx/24
 ```
 
-## Shares
+### Shares
 
 ```bash
 # list shares on a server
@@ -92,7 +94,7 @@ dmesg -T | grep -i "cifs\|smb\|mount\|network" # Kernel messages
 ```
 
 
-## Security baselining
+### Security baselining
 
 ```bash
 # audit system
@@ -104,7 +106,7 @@ lynis audit system
 rkhunter --check
 ```
 
-## Anti-virus with ClamAV
+### Anti-virus with ClamAV
 
 #### ClamAV optimisations
 
@@ -149,9 +151,9 @@ clamscan -r /
 # scan specific file/folder
 clamscan -r -i /path/to/scan 
 ```
-## SSH
+### SSH
 
-### Secure SSH connection configuration
+#### Secure SSH connection configuration
 
 ```bash
 # edit ssh configuration file
@@ -163,7 +165,7 @@ vim /etc/ssh/sshd_config
 - [x] PasswordAuthentication no (if using SSH keys)
 - [ ] AllowUsers <your_username> (to explicitly allow only certain users)
 
-## WiFi
+### WiFi
 
 ```bash
 
@@ -184,7 +186,7 @@ nmcli connection show --active
 nmtui
 ```
 
-## Remove the swapfile
+### Remove the swapfile
 
 ```bash
 # disable swapfile
