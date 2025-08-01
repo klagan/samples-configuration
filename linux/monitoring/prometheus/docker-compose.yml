@@ -10,6 +10,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       # - '--storage.tsdb.retention.time=7d' # <-- default retention period is 15 days, this line adjusts that to 7 days
+      # - '--storage.tsdb.retention.size=10GB' # <-- will limit retention by space
     ports:
       - "9090:9090"
     networks:
