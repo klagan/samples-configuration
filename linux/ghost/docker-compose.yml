@@ -17,6 +17,8 @@ services:
       database__connection__user: ghost
       database__connection__password: your_db_password
       database__connection__database: ghost_db
+      # useif no email is set up
+      security__staffDeviceVerification: false
     volumes:
       - ghost_content:/var/lib/ghost/content
     depends_on:
