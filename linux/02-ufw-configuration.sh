@@ -29,6 +29,7 @@
 SSH_PORT="22"         # Standard SSH port. CHANGE THIS if you use a different port!
 HTTP_PORT="80"        # Standard port for web servers (HTTP)
 HTTPS_PORT="443"      # Standard port for secure web servers (HTTPS)
+PROMETHEUS_EXPORTER="9100" # prometheus node exporter
 # Example: Add other service ports here
 # MYSQL_PORT="3306"
 # POSTGRES_PORT="5432"
@@ -86,6 +87,9 @@ sudo ufw allow $HTTP_PORT/tcp
 
 echo "Allowing HTTPS on port $HTTPS_PORT/tcp..."
 sudo ufw allow $HTTPS_PORT/tcp
+
+echo "Allowing HTTPS on port $PROMETHEUS_EXPORTER/tcp..."
+sudo ufw allow $PROMETHEUS_EXPORTER/tcp
 
 # --- Custom Rules (Uncomment and customize as needed) ---
 
