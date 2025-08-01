@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+  ghost:
+    image: ghost:latest
+    container_name: ghost_app
+    restart: always
+    ports:
+      # Expose the Ghost container's internal port 2368 to the host's port 80
+      - "80:2368"
+    environment:
+      # The URL should be http, not https, since you are not using SSL
+      url: http://yourblog.com
+      # Database configuration
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: your_db_password
+      database__connection__database: ghost_db
+    volumes:
+      - ghost_content:/var/lib/ghost/content
+    depends_on:
+      - db
+    networks:
+      - ghost-network
+
+  db:
+    image: mysql:8.0
+    container_name: ghost_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_DATABASE: ghost_db
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: your_db_password
+    volumes:
+      - ghost_db_data:/var/lib/mysql
+    networks:
+      - ghost-network
+
+volumes:
+  ghost_content:
+  ghost_db_data:
+
+networks:
+  ghost-network:
