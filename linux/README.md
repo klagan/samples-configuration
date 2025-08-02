@@ -31,6 +31,11 @@ cat /proc/device-tree/model
 
 # find size of package
 dpkg -s glances | grep 'Installed-Size:'
+
+# adding public ssh authorised key
+mkdir ~/.ssh
+chmod 755 ~/.ssh
+vim ~/.ssh/authorized_keys # copy public keys in here
 ```
 
 ### Network
