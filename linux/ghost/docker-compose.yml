@@ -21,6 +21,9 @@ services:
       security__staffDeviceVerification: false
     volumes:
       - ghost_content:/var/lib/ghost/content
+      # for configuration outside the container
+      # - ./config.development.json:/var/lib/ghost/config.development.json
+      # - ./config.production.json:/var/lib/ghost/config.production.json
     depends_on:
       - db
     networks:
