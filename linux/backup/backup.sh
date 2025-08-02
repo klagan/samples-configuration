@@ -1,14 +1,23 @@
 #!/bin/bash
 
-SOURCE_FOLDERS="/home/pi/documents/ /home/pi/photos/" # add all folders you want to backup
+SOURCE_FOLDERS=("/a" "/b" "/c") # list folders for backup
 DESTINATION_USER=${BKUP_UID}
 DESTINATION_HOST=${BKUP_ADDR}
 DESTINATION_PATH=$(date +%Y%m%d%H%M%S)
+DESTINATION_PORT=22
+PASSWORD_FILE="./password.txt"
 
 # use rsync in archive mode, compress during transfer, show progress
 # the trailing slash on SOURCE_FOLDERS is important for rsync!
 # it means "copy the CONTENTS of this folder", not the folder itself.
-rsync -avz --progress \
+# us public key not password
+# rsync -avz --progress \
+#  -e "ssh -p ${DESTINATION_PORT}" \
+#  "${SOURCE_FOLDERS[@]}" \
+#  "${DESTINATION_USER}@${DESTINATION_HOST}:${DESTINATION_PATH}/"
+
+sshpass -f "$PASSWORD_FILE" rsync -avz --progress \
+  -e "ssh -p ${DESTINATION_PORT}" \
   "${SOURCE_FOLDERS[@]}" \
   "${DESTINATION_USER}@${DESTINATION_HOST}:${DESTINATION_PATH}/"
 
@@ -17,4 +26,4 @@ rsync -avz --progress \
 # rsync -avz --delete --progress "${SOURCE_FOLDERS[@]}" "${DESTINATION_USER}@${DESTINATION_HOST}:${DESTINATION_PATH}/"
 
 # add a log message
-echo "Backup completed on $(date)" >> /var/log/my_rsync_backup.log
+echo "Backup completed on $(date)" >> /home/admin/logs/my_rsync_backup.log
