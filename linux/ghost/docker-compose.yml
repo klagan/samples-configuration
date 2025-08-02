@@ -7,7 +7,7 @@ services:
       # Expose the Ghost container's internal port 2368 to the host's port 80
       - "80:2368"
     environment:
-      url: http://yourblog.com
+      url: ${SITE_URL}
       
       # database configuration
       database__client: mysql
