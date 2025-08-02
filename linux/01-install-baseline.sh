@@ -1,6 +1,6 @@
 apt update
 apt -y upgrade
-apt -y install ufw vim lynx curl glances apt-listbugs
+apt -y install vim lynx curl glances apt-listbugs
 apt autoremove
 
 # set up swap space (if not already configured)
