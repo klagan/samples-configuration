@@ -9,21 +9,28 @@ services:
       # Expose the Ghost container's internal port 2368 to the host's port 80
       - "80:2368"
     environment:
-      # The URL should be http, not https, since you are not using SSL
       url: http://yourblog.com
-      # Database configuration
+      
+      # database configuration
       database__client: mysql
       database__connection__host: db
       database__connection__user: ghost
-      database__connection__password: your_db_password
+      database__connection__password: ${DB_PWD}
       database__connection__database: ghost_db
-      # useif no email is set up
-      security__staffDeviceVerification: false
+      
+      # not having emails set up can cause issues logging into admin screen.  this line disables email use requirement
+      # security__staffDeviceVerification: false
+
+      # mail configuration
+      mail__transport: SMTP
+      mail__from: ${MAIL_FROM}
+      mail__options__host: ${MAIL_HOST}
+      mail__options__port: ${MAIL_PORT}
+      mail__options__secure: true
+      mail__options__auth__user: ${MAIL_UID}
+      mail__options__auth__pass: ${MAIL_PWD}
     volumes:
       - ghost_content:/var/lib/ghost/content
-      # for configuration outside the container
-      # - ./config.development.json:/var/lib/ghost/config.development.json
-      # - ./config.production.json:/var/lib/ghost/config.production.json
     depends_on:
       - db
     networks:
@@ -34,10 +41,10 @@ services:
     container_name: ghost_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PWD}
       MYSQL_DATABASE: ghost_db
       MYSQL_USER: ghost
-      MYSQL_PASSWORD: your_db_password
+      MYSQL_PASSWORD: ${DB_PWD}
     volumes:
       - ghost_db_data:/var/lib/mysql
     networks:
