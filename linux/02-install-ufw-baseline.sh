@@ -58,6 +58,11 @@ show_status() {
 
 check_root
 
+apt update
+apt -y upgrade
+apt -y install ufw
+apt autoremove
+
 echo "--- Starting UFW Configuration ---"
 
 # Step 1: Reset UFW to a clean state.
