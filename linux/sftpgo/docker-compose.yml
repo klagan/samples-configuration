@@ -42,6 +42,8 @@ services:
       - SFTPGO_DATA_PROVIDER__CREATE_DEFAULT_ADMIN=true
       - SFTPGO_DATA_PROVIDER__DEFAULT_ADMIN_USERNAME=sftpgo_admin
       - SFTPGO_DATA_PROVIDER__DEFAULT_ADMIN_PASSWORD=change_this_password_immediately!
+      - SFTPGO_DEFAULT_ADMIN_USERNAME=admin
+      - SFTPGO_DEFAULT_ADMIN_PASSWORD=change_this_password_immediately!
 
       # Database Configuration (for internal SFTPGo data - SQLite is default)
       # If you want to use PostgreSQL or MySQL, uncomment and configure these:
