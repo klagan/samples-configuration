@@ -28,8 +28,8 @@ services:
       mail__options__host: ${MAIL_HOST}
       mail__options__port: ${MAIL_PORT}
       mail__options__secure: true
-      mail__options__auth__user: ${MAIL_UID}
-      mail__options__auth__pass: ${MAIL_PWD}
+      mail__options__auth__user: ${MAIL_AUTH_UID}
+      mail__options__auth__pass: ${MAIL_AUTH_PWD}
     volumes:
       - ghost_content:/var/lib/ghost/content
     depends_on:
