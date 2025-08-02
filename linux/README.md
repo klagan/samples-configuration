@@ -1,5 +1,20 @@
 # Getting started
 
+- [x] `01-install-baseline.sh`   
+Baseline installation and updates to linux OS
+
+
+- [x] `02-install-ufw-baseline.sh`    
+Simple configuration the linux firewall 
+
+- [x] `11-install-security-baseline.sh`   
+Install baseline of security tools
+
+- [x] `12-install-file-baseline.sh`   
+Install baseline fo file system tools.  Useful for creating file shares.
+
+---
+
 ## Useful commands
 
 ### Host
