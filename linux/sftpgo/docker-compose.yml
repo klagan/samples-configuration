@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   sftpgo:
     image: drakkan/sftpgo:latest # Always prefer a specific version, e.g., drakkan/sftpgo:2.6.6
