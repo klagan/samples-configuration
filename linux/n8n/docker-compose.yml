@@ -8,8 +8,9 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n 
     environment:
-      # - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME} # Or your actual host
-      - N8N_PORT=5678
+      - N8N_HOST=subdomain.domain
+      - WEBHOOK_URL=https://subdomain.domain # used for callback uris that are confused by the port management when using proxies
+      # - N8N_PORT=5678
       - N8N_SECURE_COOKIE=false
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       # - N8N_PROTOCOL=https # Or http
