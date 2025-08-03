@@ -1,5 +1,29 @@
 #!/bin/bash
 
+## ----->use following script in a prerequisite step - any way you like<-----
+## set environment variables
+# export CIFS_SERVER=192.168.0.0                         # network server address to map to (destination)
+# export CIFS_SHARE=Public/Books                         # network folder mount point to map to (destination)
+# export MOUNT_POINT=/calibre/books                      # local mount point to map to (source)
+# export CREDENTIALS_FILE=/calibre/.credentials          # change only if required - credentials require to map to remote location
+# export OWNER_NAME=calibreweb                           # change only if required - local owner user name
+# export OWNER_GROUP_NAME=calibreweb                     # change only if required - local owner group name
+
+# create user
+# useradd -m ${OWNER_NAME}                                                       # create the local user
+
+# create folders
+# mkdir /calibre /calibre/books /calibre/db /calibre/config                      # create any folders required
+
+# map drives
+# ../tools/map-drive.sh                                                          # run the map-drive script
+
+# reset permissions
+# chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_GROUP_NAME}) /calibre          # set owners on root folders created above
+## ----->end here<-----
+
+
+
 # --- Configuration Variables (Customize these for your specific entry) ---
 # Example 1: Local Partition Mount
 # DEVICE_OR_UUID="UUID=YOUR_PARTITION_UUID_HERE" # Get this from 'sudo blkid'
