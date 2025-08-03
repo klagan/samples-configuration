@@ -15,6 +15,16 @@ Install baseline fo file system tools.  Useful for creating file shares.
 
 ---
 
+## Useful files
+
+`.bash_aliases`   
+- List aliases for users
+
+`.bashrc`  
+- Executes every time you open a new interactive, non-login shell. Runs every time you open a new terminal window or tab
+
+---
+
 ## Useful commands
 
 ### Host
