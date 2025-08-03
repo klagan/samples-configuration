@@ -15,7 +15,7 @@ useradd -m ${OWNER_NAME}                                                       #
 mkdir -p ${MOUNT_POINT}                                                        # create any folders required
 
 # map drives
-../tools/map-drive.sh                                                          # run the map-drive script
+.//map-drive.sh                                                                # run the map-drive script
 
 # reset permissions
 chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_GROUP_NAME}) ${MOUNT_POINT}    # set owners on root folders created above
