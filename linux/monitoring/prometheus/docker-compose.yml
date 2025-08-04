@@ -28,7 +28,7 @@ services:
     environment:
       # Use these to set a custom admin password on first login
       - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=Milady1434
+      - GF_SECURITY_ADMIN_PASSWORD=adminpassword
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_SERVER_ROOT_URL=http://<your_public_ip>:3000/
     networks:
