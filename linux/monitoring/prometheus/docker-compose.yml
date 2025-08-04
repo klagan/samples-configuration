@@ -16,8 +16,26 @@ services:
     networks:
       - monitoring
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - grafana_provisioning_datasources:/etc/grafana/provisioning/datasources
+      # - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      # Use these to set a custom admin password on first login
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=Milady1434
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    networks:
+      - monitoring
+
 networks:
   monitoring:
 
 volumes:
   prometheus_data:
+  grafana_provisioning_datasources:
