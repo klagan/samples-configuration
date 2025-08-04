@@ -20,8 +20,8 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     volumes:
-      - grafana_provisioning_datasources:/etc/grafana/provisioning/datasources
-      # - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
     ports:
       - "3000:3000"
     restart: unless-stopped
