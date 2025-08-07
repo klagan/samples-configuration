@@ -35,6 +35,10 @@ PROMETHEUS_EXPORTER="9100" # prometheus node exporter
 # POSTGRES_PORT="5432"
 # CUSTOM_APP_PORT="8080"
 
+IPV4_INTERFACE=$(ip -4 route show default | awk '{print $5}')
+
+IPV4_CIDR_SUBNET=$(ip addr show $IPV4_INTERFACE | grep 'inet ' | awk '{print $2}')
+
 
 # --- Functions ---
 
@@ -84,17 +88,22 @@ echo "Allowing essential services..."
 # Allow SSH. This is crucial to avoid locking yourself out!
 # If you are managing the server remotely, this must be done first.
 echo "Allowing SSH on port $SSH_PORT/tcp..."
-sudo ufw allow $SSH_PORT/tcp
+# sudo ufw allow $SSH_PORT/tcp
+sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $SSH_PORT
 
 # Allow HTTP and HTTPS for a web server
 echo "Allowing HTTP on port $HTTP_PORT/tcp..."
-sudo ufw allow $HTTP_PORT/tcp
+# sudo ufw allow $HTTP_PORT/tcp
+sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $HTTP_PORT
 
 echo "Allowing HTTPS on port $HTTPS_PORT/tcp..."
-sudo ufw allow $HTTPS_PORT/tcp
+# sudo ufw allow $HTTPS_PORT/tcp
+# sudo ufw allow in proto tcp to any port $HTTPS_PORT
+sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $HTTPS_PORT
 
 echo "Allowing HTTPS on port $PROMETHEUS_EXPORTER/tcp..."
-sudo ufw allow $PROMETHEUS_EXPORTER/tcp
+# sudo ufw allow $PROMETHEUS_EXPORTER/tcp
+sudo ufw allow in from $IPV4_CIDR_SUBNET to any port $PROMETHEUS_EXPORTER
 
 # --- Custom Rules (Uncomment and customize as needed) ---
 
