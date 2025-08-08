@@ -3,7 +3,7 @@
 export vpn_username=                              # your vpn username
 export vpn_password=                              # your vpn password
 export credentials_file=.vpn_credentials          # change only if you need a different name
-export ovpn_filename=/root/ch.protonvpn.udp.ovpn  # change this to your own openvpn file
+export ovpn_filename=./ch.protonvpn.udp.ovpn  # change this to your own openvpn file
 
 # install packages
 apt -y update && apt -y upgrade
