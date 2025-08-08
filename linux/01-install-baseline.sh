@@ -3,6 +3,9 @@ apt -y upgrade
 apt -y install vim lynx curl glances apt-listbugs
 apt autoremove
 
+# install pi apps appstore
+wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash
+
 # set up swap space (if not already configured)
 fallocate -l 1G /swapfile
 chmod 600 /swapfile
