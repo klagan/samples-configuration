@@ -25,13 +25,13 @@ echo "alias df='df -aTh'" > ~/.zshrc
 echo "alias ls='ls -l --color=auto'" >> ~/.zshrc
 
 cat > ~/.zshrc << EOF
-alias df='df -aTh
-alias ls='ls -l --color=auto
+alias df='df -aTh'
+alias ls='ls -l --color=auto'
 EOF
 
 cat > ~/.bashrc << EOF
-alias df='df -aTh
-alias ls='ls -l --color=auto
+alias df='df -aTh'
+alias ls='ls -l --color=auto'
 EOF
 
 cat > ~/.vimrc << EOF
