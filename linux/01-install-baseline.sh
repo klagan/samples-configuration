@@ -29,6 +29,11 @@ alias df='df -aTh
 alias ls='ls -l --color=auto
 EOF
 
+cat > ~/.bashrc << EOF
+alias df='df -aTh
+alias ls='ls -l --color=auto
+EOF
+
 cat > ~/.vimrc << EOF
 " Add numbers to each line on the left-hand side.
 set number
