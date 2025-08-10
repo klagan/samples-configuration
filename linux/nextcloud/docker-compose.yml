@@ -1,0 +1,53 @@
+# Use a modern version of the Docker Compose format.
+version: '3.7'
+
+# Define the services that make up your application.
+services:
+  # The database service. We'll use MariaDB, a popular choice for Nextcloud.
+  db:
+    image: mariadb:10.5
+    # Restart the container automatically if it stops.
+    restart: always
+    # Define environment variables for database configuration.
+    environment:
+      # !!IMPORTANT!! Change these values to secure your database.
+      MYSQL_ROOT_PASSWORD: your_root_password_here
+      MYSQL_DATABASE: nextcloud_db
+      MYSQL_USER: nextcloud_user
+      MYSQL_PASSWORD: your_database_password_here
+    # Define a volume to ensure database data is persistent.
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # The Nextcloud application service.
+  app:
+    image: nextcloud:27-apache
+    # Restart the container automatically.
+    restart: always
+    # Map a port from the container to the host machine.
+    # The format is HOST:CONTAINER. This makes Nextcloud accessible on port 8080 of your host.
+    ports:
+      - 8080:80
+    # Link the app to the database service.
+    depends_on:
+      - db
+    # Define environment variables for the Nextcloud installation.
+    environment:
+      # The host name of the database service (as defined above).
+      MYSQL_HOST: db
+      # These must match the values set in the 'db' service.
+      MYSQL_DATABASE: nextcloud_db
+      MYSQL_USER: nextcloud_user
+      MYSQL_PASSWORD: your_database_password_here
+      # !!IMPORTANT!! Set the admin user and password for your Nextcloud instance.
+      NEXTCLOUD_ADMIN_USER: admin
+      NEXTCLOUD_ADMIN_PASSWORD: your_admin_password_here
+    # Use a volume for the Nextcloud data to ensure it persists.
+    # The 'nextcloud_data' volume stores user files, app data, etc.
+    volumes:
+      - nextcloud_data:/var/www/html
+
+# Define the named volumes to be used by the services.
+volumes:
+  db_data:
+  nextcloud_data:
