@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# load environment variables
-source .map-drive.env
+source .map-drive.env                                                          # load environment variables
+useradd -m ${OWNER_NAME}                                                       # create the local owner user (implicitly creates owner group too)
+mkdir -p ${MOUNT_POINT}                                                        # create any folders required
+chown -R $(id -u ${OWNER_NAME}):$(id -g ${OWNER_GROUP_NAME}) ${MOUNT_POINT}    # set owners on root folders created above
 
 ## ----->use following script in a prerequisite step - any way you like<-----
 ## set environment variables
@@ -42,6 +44,8 @@ source .map-drive.env
 # password=your_cifs_password
 # domain=your_ad_domain (optional)
 # For creating the credentials file, refer to the previous answer.
+
+
 CIFS_SERVER="$CIFS_SERVER"
 CIFS_SHARE="$CIFS_SHARE"
 MOUNT_POINT="$MOUNT_POINT"
@@ -67,7 +71,6 @@ PASS_OPTION="0" # 0 for network shares; 2 for other local non-root filesystems; 
 
 
 # --- Script Logic ---
-
 FSTAB_FILE="/etc/fstab"
 FSTAB_BACKUP="${FSTAB_FILE}.bak_$(date +%Y%m%d%H%M%S)"
 
@@ -82,7 +85,6 @@ echo ${FSTAB_ENTRY}
 
 # For NFS network share:
 # FSTAB_ENTRY="${NFS_SERVER}:${NFS_SHARE} ${MOUNT_POINT} ${FS_TYPE} ${OPTIONS} ${DUMP_OPTION} ${PASS_OPTION}"
-
 
 # 1. Check if the script is run as root
 if [ "$(id -u)" -ne 0 ]; then
