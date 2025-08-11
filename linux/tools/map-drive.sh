@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# load environment variables
+source .map-drive.env
+
 ## ----->use following script in a prerequisite step - any way you like<-----
 ## set environment variables
 # export CIFS_SERVER=192.168.0.0                         # network server address to map to (destination)
