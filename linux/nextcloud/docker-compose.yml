@@ -29,6 +29,7 @@ services:
       OVERWRITEPROTOCOL: https
     volumes:
       - nextcloud_data:/var/www/html
+      - ${DATA_HOME}:/var/www/html/data
 volumes:
   db_data:
   nextcloud_data:
