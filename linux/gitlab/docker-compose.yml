@@ -4,11 +4,15 @@ services:
     image: gitlab/gitlab-ce:latest
     container_name: gitlab
     restart: always
-    hostname: 'gitlab.example.com' # Replace with your desired hostname
+    hostname: 'gitlab.example.com' # replace with your desired hostname
+    cpus: 4
+    mem_limit: 6g
+    mem_reservation: 4g
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab.example.com' # replace with your desired URL
         gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        
         # configure the GitLab container to connect to the separate PostgreSQL and Redis containers
         gitlab_rails['db_adapter'] = 'postgresql'
         gitlab_rails['db_encoding'] = 'unicode'
