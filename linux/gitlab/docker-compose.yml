@@ -1,0 +1,50 @@
+# requires at least 4GB of RAM and a quad-core processor to run efficiently.
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab.example.com' # Replace with your desired hostname
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.example.com' # replace with your desired URL
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        # configure the GitLab container to connect to the separate PostgreSQL and Redis containers
+        gitlab_rails['db_adapter'] = 'postgresql'
+        gitlab_rails['db_encoding'] = 'unicode'
+        gitlab_rails['db_database'] = ${GITLAB_POSTGRESQL_DATABASENAME}
+        gitlab_rails['db_host'] = 'postgresql'
+        gitlab_rails['db_port'] = 5432
+        gitlab_rails['db_username'] = ${GITLAB_POSTGRESQL_UID}
+        gitlab_rails['db_password'] = ${GITLAB_POSTGRESQL_PWD}
+        gitlab_rails['redis_host'] = 'redis'
+        gitlab_rails['redis_port'] = 6379
+    ports:
+      - '80:80'    
+      - '443:443'  
+      - '2224:22'  
+    volumes:
+      - ./config:/etc/gitlab
+      - ./logs:/var/log/gitlab
+      - ./data:/var/opt/gitlab
+    depends_on:
+      - postgresql
+      - redis
+
+  postgresql:
+    image: postgres:13
+    container_name: gitlab-postgresql
+    restart: always
+    environment:
+      - POSTGRES_USER=${GITLAB_POSTGRESQL_UID}
+      - POSTGRES_PASSWORD=${GITLAB_POSTGRESQL_PWD}
+      - POSTGRES_DB=${GITLAB_POSTGRESQL_DATABASENAME}
+    volumes:
+      - ./postgresql_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    container_name: gitlab-redis
+    restart: always
+    volumes:
+      - ./redis_data:/data
