@@ -1,3 +1,29 @@
+rename_if_exists() {
+    local FILE_TO_CHECK="$1"
+
+    # Check if the file exists and is a regular file (-f flag).
+    if [ -f "$FILE_TO_CHECK" ]; then
+        local DATETIME=$(date +"%Y-%m-%d_%H-%M-%S")
+        
+        mv "$FILE_TO_CHECK" "${FILE_TO_CHECK}-${DATETIME}.old"
+        echo "File '$FILE_TO_CHECK' found and renamed to '${FILE_TO_CHECK}-${DATETIME}.old'."
+   
+    else
+        # File does not exist.
+        echo "File '$FILE_TO_CHECK' not found. No action taken."
+    fi
+}
+
+echo "--- backup .bashrc ---"
+rename_if_exists "~.bashrc"
+echo "" 
+
+echo "--- backup .zshrc ---"
+rename_if_exists ".zshrc"
+
+echo "--- backup .vimrc ---"
+rename_if_exists ".vimrc"
+
 # set up defaults
 echo "alias df='df -aTh'" > ~/.zshrc
 echo "alias ls='ls -l --color=auto'" >> ~/.zshrc
