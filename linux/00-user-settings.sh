@@ -14,28 +14,29 @@ rename_if_exists() {
     fi
 }
 
-echo "--- backup .bashrc ---"
-rename_if_exists "~.bashrc"
+echo "--- backup .bash_aliases ---"
+rename_if_exists "~.bash_aliases"
+touch ~.bash_aliases
 echo "" 
 
 echo "--- backup .zshrc ---"
 rename_if_exists ".zshrc"
+touch ~.zshrc
+echo ""
 
 echo "--- backup .vimrc ---"
 rename_if_exists ".vimrc"
-
-# set up defaults
-echo "alias df='df -aTh'" > ~/.zshrc
-echo "alias ls='ls -l --color=auto'" >> ~/.zshrc
+touch ~.vimrc
+echo ""
 
 cat > ~/.zshrc << EOF
 alias df='df -aTh'
-alias ls='ls -l --color=auto'
+alias ls='ls -hlpG --color=auto'
 EOF
 
-cat > ~/.bashrc << EOF
+cat > ~/.bash_aliases << EOF
 alias df='df -aTh'
-alias ls='ls -l --color=auto'
+alias ls='ls -hlpG --color=auto'
 EOF
 
 cat > ~/.vimrc << EOF
