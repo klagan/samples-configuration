@@ -1,0 +1,13 @@
+services:
+  gogs:
+    image: gogs/gogs:0.13-arm64
+    container_name: gogs
+    restart: always
+    ports:
+      - "81:3000"
+      - "2222:22"
+    volumes:
+      - ./gogs_data:/data
+    environment:
+      - GOGS_CUSTOM=/data
+      - GOGS_INSTALL_DB_TYPE=sqlite3
