@@ -4,10 +4,10 @@ rename_if_exists() {
     # Check if the file exists and is a regular file (-f flag).
     if [ -f "$FILE_TO_CHECK" ]; then
         local DATETIME=$(date +"%Y-%m-%d_%H-%M-%S")
-        
+
         mv "$FILE_TO_CHECK" "${FILE_TO_CHECK}-${DATETIME}.old"
         echo "File '$FILE_TO_CHECK' found and renamed to '${FILE_TO_CHECK}-${DATETIME}.old'."
-   
+
     else
         # File does not exist.
         echo "File '$FILE_TO_CHECK' not found. No action taken."
@@ -15,18 +15,18 @@ rename_if_exists() {
 }
 
 echo "--- backup .bash_aliases ---"
-rename_if_exists "~.bash_aliases"
-touch ~.bash_aliases
-echo "" 
+rename_if_exists ~/.bash_aliases
+touch ~/.bash_aliases
+echo ""
 
 echo "--- backup .zshrc ---"
-rename_if_exists ".zshrc"
-touch ~.zshrc
+rename_if_exists ~/.zshrc
+touch ~/.zshrc
 echo ""
 
 echo "--- backup .vimrc ---"
-rename_if_exists ".vimrc"
-touch ~.vimrc
+rename_if_exists ~/.vimrc
+touch ~/.vimrc
 echo ""
 
 cat > ~/.zshrc << EOF
@@ -103,3 +103,5 @@ function bigfolders() {
     local num_lines=${2:-10}
     sudo du -sh "$target_dir"/* | sort -rh | head -n "$num_lines"
 }
+
+source ~/.bashrc
