@@ -37,7 +37,6 @@ EOF
 cat > ~/.bash_aliases << EOF
 alias df='df -aTh'
 alias ls='ls -hlpG --color=auto'
-alias bigpackages='dpkg-query -Wf '\''${Installed-Size}\t${Package}\n'\'' | sort -nr | head -n 20'
 # raspberry pi specific
 # alias pihealth='vcgencmd measure_volts core && vcgencmd get_throttled && vcgencmd measure_temp'
 # alias pimodel='cat /proc/device-tree/model'
