@@ -38,7 +38,8 @@ cat > ~/.bash_aliases << EOF
 alias df='df -aTh'
 alias ls='ls -hlpG --color=auto'
 # raspberry pi specific
-# alias healthpi='vcgencmd measure_volts core && vcgencmd get_throttled && vcgencmd measure_temp'
+# alias pihealth='vcgencmd measure_volts core && vcgencmd get_throttled && vcgencmd measure_temp'
+# alias pimodel='cat /proc/device-tree/model'
 EOF
 
 cat > ~/.vimrc << EOF
