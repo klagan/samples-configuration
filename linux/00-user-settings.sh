@@ -37,6 +37,8 @@ EOF
 cat > ~/.bash_aliases << EOF
 alias df='df -aTh'
 alias ls='ls -hlpG --color=auto'
+# raspberry pi specific
+# alias healthpi='vcgencmd measure_volts core && vcgencmd get_throttled && vcgencmd measure_temp'
 EOF
 
 cat > ~/.vimrc << EOF
@@ -93,3 +95,9 @@ set hlsearch
 " Set the commands to save in history default number is 20.
 set history=1000
 EOF
+
+function bigfolders() {
+    local target_dir=${1:-/}
+    local num_lines=${2:-10}
+    sudo du -sh "$target_dir"/* | sort -rh | head -n "$num_lines"
+}
