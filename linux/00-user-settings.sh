@@ -103,4 +103,8 @@ function bigfolders() {
     sudo du -sh "$target_dir"/* | sort -rh | head -n "$num_lines"
 }
 
+function kctx () {
+    kubectl config set-context --current --namespace=${1:-default}
+}
+
 source ~/.bashrc
