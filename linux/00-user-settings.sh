@@ -107,4 +107,12 @@ function kctx () {
     kubectl config set-context --current --namespace=${1:-default}
 }
 
+function kns () {
+  if [ -z "$1" ]; then
+    echo "Error: Missing parameter. Please provide a namespace name."
+    return 1
+  fi
+  kubectl create namespace ${1} --dry-run=client -o yaml > ${1}.yaml
+}
+
 source ~/.bashrc
