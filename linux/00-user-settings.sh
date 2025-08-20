@@ -105,6 +105,7 @@ function bigfolders() {
 
 function kctx () {
     kubectl config set-context --current --namespace=${1:-default}
+	echo "Current namespace --> $(kubectl config get-contexts | grep "*" | awk '{print $NF}')"
 }
 
 function kns () {
