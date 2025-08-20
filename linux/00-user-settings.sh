@@ -132,4 +132,13 @@ function kns () {
           --dry-run=client -o yaml > ${1}.yaml
   }
 
+function kpods() {
+    if [ -z "$1" ]; then
+        echo "Error: Missing parameter. Please provide a node name."
+        return 1
+    fi
+
+    kubectl get pods --all-namespaces --field-selector spec.nodeName=${1}
+}
+
 source ~/.bashrc
