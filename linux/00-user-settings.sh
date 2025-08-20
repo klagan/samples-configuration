@@ -115,4 +115,20 @@ function kns () {
   kubectl create namespace ${1} --dry-run=client -o yaml > ${1}.yaml
 }
 
+  function kdep () {
+      if [ -z "$1" ]; then
+          echo "Error: Missing parameter. Please provide a deployment name: kdep <deployment name> <image name>"
+          return 1
+      fi
+ 
+      if [ -z "$2" ]; then
+          echo "Error: Missing parameter. Please provide an image name: kdep <deployment name> <image name>"
+          return 1
+      fi
+ 
+      kubectl create deployment ${1} \
+          --image=${2} \
+          --dry-run=client -o yaml > ${1}.yaml
+  }
+
 source ~/.bashrc
