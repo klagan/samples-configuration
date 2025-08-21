@@ -1,6 +1,6 @@
 apt update
 apt upgrade -y
-apt install vim lynx curl glances apt-listbugs neofetch -y
+apt install vim lynx curl glances apt-listbugs neofetch ntp samba-client -y
 apt autoremove
 
 # install pi apps appstore
