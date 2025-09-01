@@ -12,10 +12,10 @@ chmod 600 /home/"$new_user"/.ssh/authorized_keys
 echo "User $new_user created and .ssh directory set up."
 
 # set password for user
-# sudo passwd kam
+# sudo passwd new_user
 
 # add to sudo group
-# sudo usermod -a -G sudo kam
+# sudo usermod -a -G sudo new_user
 
 # ---> manual publickey addition to account
 # ssh username@remote_host
@@ -33,7 +33,7 @@ echo "User $new_user created and .ssh directory set up."
 # must also distribute the private key to the user
 
 # ---> add user specific ssh configuration/restrictions
-# /etc/ssh/sshd_config.d/90-kam.conf
+# /etc/ssh/sshd_config.d/90-new_user.conf
 # can match on multiple criteria like: Match User john.doe Address 192.168.1.5
 # Match User new_user
 #     PasswordAuthentication no
