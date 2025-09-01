@@ -35,6 +35,6 @@ echo "User $new_user created and .ssh directory set up."
 # ---> add user specific ssh configuration/restrictions
 # /etc/ssh/sshd_config.d/90-kam.conf
 # can match on multiple criteria like: Match User john.doe Address 192.168.1.5
-# Match User kam
+# Match User new_user
 #     PasswordAuthentication no
 #     PubkeyAuthentication yes
