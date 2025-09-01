@@ -37,6 +37,7 @@ EOF
 cat > ~/.bash_aliases << EOF
 alias df='df -aTh'
 alias ls='ls -hlpG --color=auto'
+alias vncconnections='ps aux | grep vnc && sudo ss -tlnp | grep vnc'
 # raspberry pi specific
 # alias pihealth='vcgencmd measure_volts core && vcgencmd get_throttled && vcgencmd measure_temp'
 # alias pimodel='cat /proc/device-tree/model'
