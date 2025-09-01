@@ -12,17 +12,19 @@
 # ==============================================================================
 
 # --- Variables ---
-SSH_PORT="22"                 # standard SSH port. CHANGE THIS if you use a different port!
-HTTP_PORT="80"                # standard port for web servers (HTTP)
-HTTPS_PORT="443"              # standard port for secure web servers (HTTPS)
-PROMETHEUS_EXPORTER="9100"    # prometheus node exporter
-# add other service ports here
+SSH_PORT="22"                     # standard SSH port. CHANGE THIS if you use a different port!
+HTTP_PORT="80"                    # standard port for web servers (HTTP)
+HTTPS_PORT="443"                  # standard port for secure web servers (HTTPS)
+PROMETHEUS_EXPORTER_PORT="9100"   # prometheus node exporter
+VNC_PORT="5900"                   # vnc port
+
+# add other service ports here:
 # MYSQL_PORT="3306"
 # POSTGRES_PORT="5432"
 # CUSTOM_APP_PORT="8080"
 
 IPV4_INTERFACE=$(ip -4 route show default | awk '{print $5}')
-IPV4_CIDR_SUBNET=$(ip addr show $IPV4_INTERFACE | grep 'inet ' | awk '{print $2}')
+IPV4_SUBNET_CIDR=$(ip addr show $IPV4_INTERFACE | grep 'inet ' | awk '{print $2}')
 
 # --- Functions ---
 # check for root privileges
@@ -63,16 +65,17 @@ sudo ufw default allow outgoing
 echo "Allowing essential services..."
 
 echo "Allowing SSH on port $SSH_PORT/tcp..."
-sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $SSH_PORT
+# sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $SSH_PORT
+sudo ufw allow in from $IPV4_CIDR_SUBNET to any port $SSH_PORT
 
-echo "Allowing HTTP on port $HTTP_PORT/tcp..."
-sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $HTTP_PORT
+# echo "Allowing HTTP on port $HTTP_PORT/tcp..."
+# sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $HTTP_PORT
 
-echo "Allowing HTTPS on port $HTTPS_PORT/tcp..."
-sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $HTTPS_PORT
+# echo "Allowing HTTPS on port $HTTPS_PORT/tcp..."
+# sudo ufw allow in proto tcp from 0.0.0.0/0 to any port $HTTPS_PORT
 
-echo "Allowing HTTPS on port $PROMETHEUS_EXPORTER/tcp..."
-sudo ufw allow in from $IPV4_CIDR_SUBNET to any port $PROMETHEUS_EXPORTER
+echo "Allowing HTTPS on port $PROMETHEUS_EXPORTER_PORT/tcp..."
+sudo ufw allow in from $IPV4_CIDR_SUBNET to any port $PROMETHEUS_EXPORTER_PORT
 
 # --- Enable UFW ---
 echo "Enabling UFW..."
