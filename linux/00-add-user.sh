@@ -1,15 +1,24 @@
 #!/bin/bash
 
-new_user="user_name"
+new_user="new_user"
 useradd -m "$new_user"
 
-mkdir /home/"$new_user"/.ssh
+mkdir -p /home/"$new_user"/.ssh
 chown "$new_user":"$new_user" /home/"$new_user"/.ssh
 chmod 700 /home/"$new_user"/.ssh
-touch /home/"$new_user"/.ssh/authorized_keys
-chmod 600 /home/"$new_user"/.ssh/authorized_keys
 
+echo "paste your public key here" >> ~/.ssh/authorized_keys
+# touch /home/"$new_user"/.ssh/authorized_keys
+
+chown "$new_user":"$new_user" /home/"$new_user"/.ssh/authorized_keys
 echo "User $new_user created and .ssh directory set up."
+
+sudo chpasswd <<EOF
+$new_user:somedefaultpassword
+EOF
+
+# force user to change
+sudo chage -d 0 $new_user
 
 # set password for user
 # sudo passwd new_user
