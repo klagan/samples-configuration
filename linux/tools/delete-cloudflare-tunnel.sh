@@ -24,4 +24,4 @@ sudo rm -f /etc/apt/sources.list.d/cloudflared.list
 sudo rm -f /usr/share/keyrings/cloudflare-main.gpg
 sudo apt update
 
-# 7. (CRITICAL) Log in to your Cloudflare Dashboard and delete the tunnel from the Zero Trust > Tunnels section.
+# 7. [IF ALL CONNECTORS ARE DELETED]: Log in to your Cloudflare Dashboard and delete the tunnel from the Zero Trust > Tunnels section. IF YOU ARE DEL
